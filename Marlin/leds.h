@@ -160,7 +160,7 @@ public:
     static LEDColor color; // last non-off color
     static bool lights_on; // the last set color was "on"
     static void toggle();  // swap "off" with color
-    FORCE_INLINE static void () { set_color(color); }
+    FORCE_INLINE static void update() { set_color(color); }
   #endif
 };
 

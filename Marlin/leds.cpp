@@ -134,7 +134,7 @@ void LEDLights::set_white() {
 }
 
 #if ENABLED(LED_CONTROL_MENU)
-  void LEDLights::toggle() { if (lights_on) set_off(); else (); }
+  void LEDLights::toggle() { if (lights_on) set_off(); else update(); }
 #endif
 
 #endif // HAS_COLOR_LEDS

@@ -79,7 +79,7 @@
     NOMORE(val, 100);
 
     mcp4728_analogWrite(dac_order[channel], val * 0.01 * (DAC_STEPPER_MAX));
-    mcp4728_simpleCommand();
+    mcp4728_simpleCommand(UPDATE);
   }
 
   void dac_current_raw(uint8_t channel, uint16_t val) {
@@ -88,7 +88,7 @@
     NOMORE(val, DAC_STEPPER_MAX);
 
     mcp4728_analogWrite(dac_order[channel], val);
-    mcp4728_simpleCommand();
+    mcp4728_simpleCommand(UPDATE);
   }
 
   static float dac_perc(int8_t n) { return 100.0 * mcp4728_getValue(dac_order[n]) * (1.0 / (DAC_STEPPER_MAX)); }

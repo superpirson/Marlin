@@ -237,7 +237,7 @@ void Planner::calculate_trapezoid_for_block(block_t* const block, const float &e
   // block->decelerate_after = accelerate_steps+plateau_steps;
 
   CRITICAL_SECTION_START;  // Fill variables used by the stepper in a critical section
-  if (!TEST(block->flag, BLOCK_BIT_BUSY)) { // Don't  variables if block is busy.
+  if (!TEST(block->flag, BLOCK_BIT_BUSY)) { // Don't update variables if block is busy.
     block->accelerate_until = accelerate_steps;
     block->decelerate_after = accelerate_steps + plateau_steps;
     block->initial_rate = initial_rate;
@@ -1071,7 +1071,7 @@ void Planner::_buffer_steps(const int32_t (&target)[XYZE], float fr_mm_s, const 
   #if ENABLED(FILAMENT_WIDTH_SENSOR)
     static float filwidth_e_count = 0, filwidth_delay_dist = 0;
 
-    //FMM  ring buffer used for delay with filament measurements
+    //FMM update ring buffer used for delay with filament measurements
     if (extruder == FILAMENT_SENSOR_EXTRUDER_NUM && filwidth_delay_index[1] >= 0) {  //only for extruder with filament sensor and if ring buffer is initialized
 
       constexpr int MMD_CM = MAX_MEASUREMENT_DELAY + 1, MMD_MM = MMD_CM * 10;
@@ -1353,7 +1353,7 @@ void Planner::_buffer_steps(const int32_t (&target)[XYZE], float fr_mm_s, const 
   // the maximum junction speed and may always be ignored for any speed reduction checks.
   block->flag |= BLOCK_FLAG_RECALCULATE | (block->nominal_speed <= v_allowable ? BLOCK_FLAG_NOMINAL_LENGTH : 0);
 
-  //  previous path unit_vector and nominal speed
+  // Update previous path unit_vector and nominal speed
   COPY(previous_speed, current_speed);
   previous_nominal_speed = block->nominal_speed;
   previous_safe_speed = safe_speed;
@@ -1393,7 +1393,7 @@ void Planner::_buffer_steps(const int32_t (&target)[XYZE], float fr_mm_s, const 
   // Move buffer head
   block_buffer_head = next_buffer_head;
 
-  //  the position (only when a move was queued)
+  // Update the position (only when a move was queued)
   static_assert(COUNT(target) > 1, "Parameter to _buffer_steps must be (&target)[XYZE]!");
   COPY(position, target);
 

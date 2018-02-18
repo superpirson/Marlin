@@ -411,7 +411,7 @@ void Stepper::isr() {
     }while(0)
 
     if (step_remaining && ENDSTOPS_ENABLED) {   // Just check endstops - not yet time for a step
-      endstops.();
+      endstops.update();
 
       // Next ISR either for endstops or stepping
       ocr_val = step_remaining <= ENDSTOP_NOMINAL_OCR_VAL ? step_remaining : ENDSTOP_NOMINAL_OCR_VAL;
@@ -483,14 +483,14 @@ void Stepper::isr() {
     }
   }
 
-  //  endstops state, if enabled
+  // Update endstops state, if enabled
   #if ENABLED(ENDSTOP_INTERRUPTS_FEATURE)
     if (e_hit && ENDSTOPS_ENABLED) {
-      endstops.();
+      endstops.update();
       e_hit--;
     }
   #else
-    if (ENDSTOPS_ENABLED) endstops.();
+    if (ENDSTOPS_ENABLED) endstops.update();
   #endif
 
   // Take multiple steps per interrupt (For high speed moves)
@@ -531,7 +531,7 @@ void Stepper::isr() {
       _COUNTER(AXIS) += current_block->steps[_AXIS(AXIS)]; \
       if (_COUNTER(AXIS) > 0) { _APPLY_STEP(AXIS)(!_INVERT_STEP_PIN(AXIS),0); }
 
-    // Stop an active pulse, reset the Bresenham counter,  the position
+    // Stop an active pulse, reset the Bresenham counter, update the position
     #define PULSE_STOP(AXIS) \
       if (_COUNTER(AXIS) > 0) { \
         _COUNTER(AXIS) -= current_block->step_event_count; \
@@ -1459,7 +1459,7 @@ void Stepper::report_positions() {
     #elif HAS_MOTOR_CURRENT_PWM
 
       if (WITHIN(driver, 0, 2))
-        motor_current_setting[driver] = current; //  motor_current_setting
+        motor_current_setting[driver] = current; // update motor_current_setting
 
       #define _WRITE_CURRENT_PWM(P) analogWrite(MOTOR_CURRENT_PWM_## P ##_PIN, 255L * current / (MOTOR_CURRENT_PWM_RANGE))
       switch (driver) {

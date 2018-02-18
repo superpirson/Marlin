@@ -444,10 +444,10 @@ class Temperature {
       static void PID_autotune(const float temp, const int8_t hotend, const int8_t ncycles, const bool set_result=false);
 
       /**
-       *  the temp manager when PID values change
+       * Update the temp manager when PID values change
        */
       #if ENABLED(PIDTEMP)
-        FORCE_INLINE static void PID() {
+        FORCE_INLINE static void updatePID() {
           #if ENABLED(PID_EXTRUSION_SCALING)
             last_e_position = 0;
           #endif
@@ -560,7 +560,7 @@ class Temperature {
 
     static void set_current_temp_raw();
 
-    static void TemperaturesFromRawValues();
+    static void updateTemperaturesFromRawValues();
 
     #if ENABLED(HEATER_0_USES_MAX6675)
       static int read_max6675();

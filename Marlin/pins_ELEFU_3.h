@@ -122,7 +122,7 @@
   #define TLC_XLAT_PIN     22
   #define TLC_DATA_PIN     24
 
-  // We also need to define pin to port number mapping for the 2560 to match the pins listed above. If you change the TLC pins,  this as well per the 2560 datasheet!
+  // We also need to define pin to port number mapping for the 2560 to match the pins listed above. If you change the TLC pins, update this as well per the 2560 datasheet!
   // This currently only works with the RA Board.
   #define TLC_CLOCK_BIT 3 // bit 3 on port A
   #define TLC_CLOCK_PORT &PORTA // bit 3 on port A

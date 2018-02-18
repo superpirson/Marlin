@@ -306,7 +306,7 @@ uint8_t Temperature::soft_pwm_amount[HOTENDS],
       const millis_t ms = millis();
 
       if (temp_meas_ready) { // temp sample ready
-        TemperaturesFromRawValues();
+        updateTemperaturesFromRawValues();
 
         input =
           #if HAS_PID_FOR_BOTH
@@ -474,7 +474,7 @@ uint8_t Temperature::soft_pwm_amount[HOTENDS],
           PID_PARAM(Kp, hotend) = workKp; \
           PID_PARAM(Ki, hotend) = scalePID_i(workKi); \
           PID_PARAM(Kd, hotend) = scalePID_d(workKd); \
-          PID(); }while(0)
+          updatePID(); }while(0)
 
         // Use the result? (As with "M303 U1")
         if (set_result) {
@@ -491,7 +491,7 @@ uint8_t Temperature::soft_pwm_amount[HOTENDS],
         }
         return;
       }
-      lcd_();
+      lcd_update();
     }
     disable_all_heaters();
   }
@@ -729,18 +729,18 @@ float Temperature::get_pid_output(const int8_t e) {
 
 /**
  * Manage heating activities for extruder hot-ends and a heated bed
- *  - Acquire d temperature readings
+ *  - Acquire updated temperature readings
  *    - Also resets the watchdog timer
  *  - Invoke thermal runaway protection
  *  - Manage extruder auto-fan
  *  - Apply filament width to the extrusion rate (may move)
- *  -  the heated bed PID output value
+ *  - Update the heated bed PID output value
  */
 void Temperature::manage_heater() {
 
   if (!temp_meas_ready) return;
 
-  TemperaturesFromRawValues(); // also resets the watchdog
+  updateTemperaturesFromRawValues(); // also resets the watchdog
 
   #if ENABLED(HEATER_0_USES_MAX6675)
     if (current_temperature[0] > min(HEATER_0_MAXTEMP, MAX6675_TMAX - 1.0)) max_temp_error(0);
@@ -957,7 +957,7 @@ float Temperature::analog2temp(const int raw, const uint8_t e) {
  * and this function is called from normal context
  * as it would block the stepper routine.
  */
-void Temperature::TemperaturesFromRawValues() {
+void Temperature::updateTemperaturesFromRawValues() {
   #if ENABLED(HEATER_0_USES_MAX6675)
     current_temperature_raw[0] = read_max6675();
   #endif
@@ -1936,10 +1936,10 @@ void Temperature::isr() {
   #endif // SLOW_PWM_HEATERS
 
   //
-  //  lcd buttons 488 times per second
+  // Update lcd buttons 488 times per second
   //
   static bool do_buttons;
-  if ((do_buttons ^= true)) lcd_buttons_();
+  if ((do_buttons ^= true)) lcd_buttons_update();
 
   /**
    * One sensor is sampled on every other call of the ISR.
@@ -1962,7 +1962,7 @@ void Temperature::isr() {
 
     case SensorsReady: {
       // All sensors have been read. Stay in this state for a few
-      // ISRs to save on calls to temp /checking code below.
+      // ISRs to save on calls to temp update/checking code below.
       constexpr int8_t extra_loops = MIN_ADC_ISR_LOOPS - (int8_t)SensorsReady;
       static uint8_t delay_count = 0;
       if (extra_loops > 0) {
@@ -2069,7 +2069,7 @@ void Temperature::isr() {
 
     temp_count = 0;
 
-    //  the raw values if they've been read. Else we could be updating them during reading.
+    // Update the raw values if they've been read. Else we could be updating them during reading.
     if (!temp_meas_ready) set_current_temp_raw();
 
     // Filament Sensor - can be read any time since IIR filtering is used
@@ -2174,7 +2174,7 @@ void Temperature::isr() {
     extern volatile uint8_t e_hit;
 
     if (e_hit && ENDSTOPS_ENABLED) {
-      endstops.();  // call endstop  routine
+      endstops.update();  // call endstop update routine
       e_hit--;
     }
   #endif
