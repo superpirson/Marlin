@@ -54,14 +54,14 @@ class PrintCounter: public Stopwatch {
     const uint16_t address = 0x32;
 
     /**
-     * @brief Interval in seconds between counter updates
+     * @brief Interval in seconds between counter s
      * @details This const value defines what will be the time between each
-     * accumulator update. This is different from the EEPROM save interval.
+     * accumulator . This is different from the EEPROM save interval.
      *
      * @note The max value for this option is 60(s), otherwise integer
      * overflow will happen.
      */
-    const uint16_t updateInterval = 10;
+    const uint16_t Interval = 10;
 
     /**
      * @brief Interval in seconds between EEPROM saves
@@ -74,7 +74,7 @@ class PrintCounter: public Stopwatch {
     /**
      * @brief Timestamp of the last call to deltaDuration()
      * @details Stores the timestamp of the last deltaDuration(), this is
-     * required due to the updateInterval cycle.
+     * required due to the Interval cycle.
      */
     millis_t lastDuration;
 

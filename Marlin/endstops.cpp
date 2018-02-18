@@ -301,6 +301,21 @@ void Endstops::M119() {
 // Check endstops - Called from ISR!
 void Endstops::update() {
 
+
+
+//emergency stop pin check
+/*
+#ifdef EMERGENCY_STOP_PIN
+  if (digitalRead(EMERGENCY_STOP_PIN)){
+        card.sdprinting = false;
+        card.closefile();
+        quickstop_stepper();
+        thermalManager.disable_all_heaters(); // switch off all heaters.
+        
+  }
+ #endif
+*/
+  
   #define _ENDSTOP(AXIS, MINMAX) AXIS ##_## MINMAX
   #define _ENDSTOP_PIN(AXIS, MINMAX) AXIS ##_## MINMAX ##_PIN
   #define _ENDSTOP_INVERTING(AXIS, MINMAX) AXIS ##_## MINMAX ##_ENDSTOP_INVERTING

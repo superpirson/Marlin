@@ -47,7 +47,7 @@ void PrintCounter::incFilamentUsed(double const &amount) {
     PrintCounter::debug(PSTR("incFilamentUsed"));
   #endif
 
-  // Refuses to update data if object is not loaded
+  // Refuses to  data if object is not loaded
   if (!this->isLoaded()) return;
 
   this->data.filamentUsed += amount; // mm
@@ -88,7 +88,7 @@ void PrintCounter::saveStats() {
   if (!this->isLoaded()) return;
 
   // Saves the struct to EEPROM
-  eeprom_update_block(&this->data,
+  eeprom__block(&this->data,
     (void *)(this->address + sizeof(uint8_t)), sizeof(printStatistics));
 }
 
@@ -148,21 +148,21 @@ void PrintCounter::showStats() {
 void PrintCounter::tick() {
   if (!this->isRunning()) return;
 
-  static uint32_t update_last = millis(),
+  static uint32_t _last = millis(),
                   eeprom_last = millis();
 
   millis_t now = millis();
 
   // Trying to get the amount of calculations down to the bare min
-  const static uint16_t i = this->updateInterval * 1000;
+  const static uint16_t i = this->Interval * 1000;
 
-  if (now - update_last >= i) {
+  if (now - _last >= i) {
     #if ENABLED(DEBUG_PRINTCOUNTER)
       PrintCounter::debug(PSTR("tick"));
     #endif
 
     this->data.printTime += this->deltaDuration();
-    update_last = now;
+    _last = now;
   }
 
   // Trying to get the amount of calculations down to the bare min

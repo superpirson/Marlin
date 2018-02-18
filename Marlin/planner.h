@@ -295,7 +295,7 @@ class Planner {
 
     FORCE_INLINE static bool is_full() { return block_buffer_tail == next_block_index(block_buffer_head); }
 
-    // Update multipliers based on new diameter measurements
+    //  multipliers based on new diameter measurements
     static void calculate_volumetric_multipliers();
 
     #if ENABLED(FILAMENT_WIDTH_SENSOR)

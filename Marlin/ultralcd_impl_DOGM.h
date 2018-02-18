@@ -485,6 +485,25 @@ inline void lcd_implementation_status_message(const bool blink) {
 
 static void lcd_implementation_status_screen() {
 
+ #define _ENDSTOP_PIN(AXIS, MINMAX) AXIS ##_## MINMAX ##_PIN
+//Extra test that writes directly to the upper left corner of the screen if an endstop is triggered!
+if( digitalRead(_ENDSTOP_PIN(X,MIN))){//TEST_ENDSTOP(X_MIN)){
+ // debugDrawBox(0, 0, 4, 4);
+  u8g.drawBox(0, 0, 4, 4);
+}
+if(digitalRead(_ENDSTOP_PIN(Y,MIN))){//TEST_ENDSTOP(Y_MIN)){
+ // debugDrawBox(0, 5, 4, 4);
+u8g.drawBox(0, 5, 4, 4);
+}
+if(digitalRead(_ENDSTOP_PIN(Z,MIN))){//TEST_ENDSTOP(Z_MIN)){
+  //debugDrawBox(0, 10, 4, 4);
+u8g.drawBox(0, 10, 4, 4);
+}
+if(digitalRead(EMERGENCY_STOP_PIN)){
+  //debugDrawBox(0, 10, 4, 4);
+u8g.drawBox(0, 20, 6, 6);
+}
+
   const bool blink = lcd_blink();
 
   // Status Menu Font

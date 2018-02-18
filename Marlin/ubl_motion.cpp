@@ -460,7 +460,7 @@
     /**
      * Prepare a segmented linear move for DELTA/SCARA/CARTESIAN with UBL and FADE semantics.
      * This calls planner.buffer_segment multiple times for small incremental moves.
-     * Returns true if did NOT move, false if moved (requires current_position update).
+     * Returns true if did NOT move, false if moved (requires current_position ).
      */
 
     bool _O2 unified_bed_leveling::prepare_segmented_line_to(const float (&rtarget)[XYZE], const float &feedrate) {
@@ -617,7 +617,7 @@
         } // segment loop
       } // cell loop
 
-      return false; // caller will update current_position
+      return false; // caller will  current_position
     }
 
   #endif // UBL_SEGMENTED

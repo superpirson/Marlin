@@ -20,12 +20,12 @@
  *
  */
 
-// Please update this list when adding new pins to Marlin.
+// Please  this list when adding new pins to Marlin.
 // The order doesn't matter.
 // Following this pattern is a must.
 // If the new pin name is over 28 characters long then pinsDebug.h will need to be modified.
 
-// Pin list updated from 18 FEB 2017 RCBugfix branch   - max length of pin name is 24
+// Pin list d from 18 FEB 2017 RCBugfix branch   - max length of pin name is 24
 
 #line 0 // set __LINE__ to a known value for both passes
 
