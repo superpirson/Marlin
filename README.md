@@ -1,3 +1,6 @@
+This Repo is for my custom edits to the Marlin FW, includeing my custom config and various other changes. Please don't assume this is the stock Marlin! It will most likely not work for you!
+
+
 # Marlin 3D Printer Firmware
 <img align="right" src="../../raw/1.1.x/buildroot/share/pixmaps/logo/marlin-250.png" />
 
