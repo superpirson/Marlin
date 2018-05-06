@@ -28,6 +28,8 @@
  *  - https://github.com/simen/grbl/tree
  */
 
+ //THIS FIRMWARE HAS BEEN EDITED BY ALEX, and should not be used unless you are him, or know what you are doing.
+
 #include "MarlinConfig.h"
 
 #if ENABLED(ULTRA_LCD)
