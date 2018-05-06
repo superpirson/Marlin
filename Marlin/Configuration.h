@@ -342,8 +342,8 @@
 
 // Comment the following line to disable PID and enable bang-bang.
 #define PIDTEMP
-#define BANG_MAX 140     // Limits current to nozzle while in bang-bang mode; 255=full current
-#define PID_MAX 170 // Limits current to nozzle while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current  //So long as the pid is active, I am ok with it pushing more power through the system. I just don't want this happening when it is preheating
+#define BANG_MAX 150     // Limits current to nozzle while in bang-bang mode; 255=full current
+#define PID_MAX 190 // Limits current to nozzle while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current  //So long as the pid is active, I am ok with it pushing more power through the system. I just don't want this happening when it is preheating
 #define PID_K1 0.95      // Smoothing factor within the PID
 #if ENABLED(PIDTEMP)
 #define PID_AUTOTUNE_MENU // Add PID Autotune to the LCD "Temperature" menu to run M303 and apply the result.
@@ -547,7 +547,7 @@
    Override with M201
                                         X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
 */
-#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 100, 1000 }
+#define DEFAULT_MAX_ACCELERATION      { 3000, 2500, 100, 1000 }
 
 /**
    Default Acceleration (change/s) change = mm/s
@@ -906,8 +906,8 @@
 #if ENABLED(G26_MESH_VALIDATION)
 #define MESH_TEST_NOZZLE_SIZE     0.4   // (mm) Diameter of primary nozzle.
 #define MESH_TEST_LAYER_HEIGHT    0.2   // (mm) Default layer height for the G26 Mesh Validation Tool.
-#define MESH_TEST_HOTEND_TEMP   205.0   // (°C) Default nozzle temperature for the G26 Mesh Validation Tool.
-#define MESH_TEST_BED_TEMP       0.0   // (°C) Default bed temperature for the G26 Mesh Validation Tool.
+#define MESH_TEST_HOTEND_TEMP   225.0   // (°C) Default nozzle temperature for the G26 Mesh Validation Tool.
+#define MESH_TEST_BED_TEMP       40.0   // (°C) Default bed temperature for the G26 Mesh Validation Tool.
 #endif
 
 #endif
@@ -915,11 +915,11 @@
 #if ENABLED(AUTO_BED_LEVELING_LINEAR) || ENABLED(AUTO_BED_LEVELING_BILINEAR)
 
 // Set the number of grid points per dimension.
-#define GRID_MAX_POINTS_X 3
+#define GRID_MAX_POINTS_X 6
 #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
 // Set the boundaries for probing (where the probe can reach).
-#define LEFT_PROBE_BED_POSITION 40
+#define LEFT_PROBE_BED_POSITION 50
 #define RIGHT_PROBE_BED_POSITION 220
 #define FRONT_PROBE_BED_POSITION 60
 #define BACK_PROBE_BED_POSITION 210
