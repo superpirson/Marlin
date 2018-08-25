@@ -358,9 +358,9 @@
 // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
 // Ultimaker
-#define  DEFAULT_Kp 12.75
-#define  DEFAULT_Ki 1.22
-#define  DEFAULT_Kd 33.12
+#define  DEFAULT_Kp 10.86
+#define  DEFAULT_Ki 0.72
+#define  DEFAULT_Kd 40.94
 
 // MakerGear
 //#define  DEFAULT_Kp 7.0
@@ -915,7 +915,7 @@
 #if ENABLED(AUTO_BED_LEVELING_LINEAR) || ENABLED(AUTO_BED_LEVELING_BILINEAR)
 
 // Set the number of grid points per dimension.
-#define GRID_MAX_POINTS_X 6
+#define GRID_MAX_POINTS_X 3
 #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
 // Set the boundaries for probing (where the probe can reach).
@@ -968,7 +968,7 @@
 #define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
 
 #define MESH_INSET 40             // Mesh inset margin on print area
-#define GRID_MAX_POINTS_X 6      // Don't use more than 15 points per axis, implementation limited.
+#define GRID_MAX_POINTS_X 3      // Don't use more than 15 points per axis, implementation limited.
 #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
 #define UBL_PROBE_PT_1_X 39       // Probing points for 3-Point leveling of the mesh
