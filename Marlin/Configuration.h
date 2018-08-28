@@ -342,8 +342,8 @@
 
 // Comment the following line to disable PID and enable bang-bang.
 #define PIDTEMP
-#define BANG_MAX 150     // Limits current to nozzle while in bang-bang mode; 255=full current
-#define PID_MAX 190 // Limits current to nozzle while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current  //So long as the pid is active, I am ok with it pushing more power through the system. I just don't want this happening when it is preheating
+#define BANG_MAX 170     // Limits current to nozzle while in bang-bang mode; 255=full current
+#define PID_MAX 200 // Limits current to nozzle while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current  //So long as the pid is active, I am ok with it pushing more power through the system. I just don't want this happening when it is preheating
 #define PID_K1 0.95      // Smoothing factor within the PID
 #if ENABLED(PIDTEMP)
 #define PID_AUTOTUNE_MENU // Add PID Autotune to the LCD "Temperature" menu to run M303 and apply the result.
@@ -352,7 +352,7 @@
 //#define SLOW_PWM_HEATERS // PWM with very low frequency (roughly 0.125Hz=8s) and minimum state time of approximately 1s useful for heaters driven by a relay
 //#define PID_PARAMS_PER_HOTEND // Uses separate PID parameters for each extruder (useful for mismatched extruders)
 // Set/get with gcode: M301 E[extruder number, 0-2]
-#define PID_FUNCTIONAL_RANGE 20 // If the temperature difference between the target temperature and the actual temperature
+#define PID_FUNCTIONAL_RANGE 30 // If the temperature difference between the target temperature and the actual temperature
 // is more than PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.
 
 // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
@@ -876,8 +876,8 @@
 */
 //#define AUTO_BED_LEVELING_3POINT
 //#define AUTO_BED_LEVELING_LINEAR
-#define AUTO_BED_LEVELING_BILINEAR
-//#define AUTO_BED_LEVELING_UBL
+//#define AUTO_BED_LEVELING_BILINEAR
+#define AUTO_BED_LEVELING_UBL
 //#define MESH_BED_LEVELING
 
 /**
@@ -967,16 +967,16 @@
 
 #define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
 
-#define MESH_INSET 40             // Mesh inset margin on print area
-#define GRID_MAX_POINTS_X 3      // Don't use more than 15 points per axis, implementation limited.
+#define MESH_INSET 60             // Mesh inset margin on print area
+#define GRID_MAX_POINTS_X 13      // Don't use more than 15 points per axis, implementation limited.
 #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
-#define UBL_PROBE_PT_1_X 39       // Probing points for 3-Point leveling of the mesh
+#define UBL_PROBE_PT_1_X 50       // Probing points for 3-Point leveling of the mesh
 #define UBL_PROBE_PT_1_Y 180
-#define UBL_PROBE_PT_2_X 39
-#define UBL_PROBE_PT_2_Y 40
+#define UBL_PROBE_PT_2_X 50
+#define UBL_PROBE_PT_2_Y 60
 #define UBL_PROBE_PT_3_X 180
-#define UBL_PROBE_PT_3_Y 40
+#define UBL_PROBE_PT_3_Y 60
 
 #define UBL_MESH_EDIT_MOVES_Z     // Sophisticated users prefer no movement of nozzle
 #define UBL_SAVE_ACTIVE_ON_M500   // Save the currently active mesh in the current slot on M500
@@ -1128,7 +1128,7 @@
 // When enabled Marlin will send a busy status message to the host
 // every couple of seconds when it can't accept commands.
 //
-#define HOST_KEEPALIVE_FEATURE        // Disable this if your host doesn't like keepalive messages
+//#define HOST_KEEPALIVE_FEATURE        // Disable this if your host doesn't like keepalive messages
 #define DEFAULT_KEEPALIVE_INTERVAL 2  // Number of seconds between "busy" messages. Set with M113.
 #define BUSY_WHILE_HEATING            // Some hosts require "busy" messages even during heating
 
