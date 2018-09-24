@@ -212,10 +212,12 @@ if(digitalRead(_ENDSTOP_PIN(Z,MIN))){//TEST_ENDSTOP(Z_MIN)){
   //debugDrawBox(0, 10, 4, 4);
 u8g.drawBox(0, 10, 4, 4);
 }
+#ifdef EMERGENCY_STOP_PIN
 if(digitalRead(EMERGENCY_STOP_PIN)){
   //debugDrawBox(0, 10, 4, 4);
 u8g.drawBox(0, 20, 6, 6);
 }
+#endif
 
   const bool blink = lcd_blink();
 
