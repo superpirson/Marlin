@@ -1141,11 +1141,11 @@
    * The default SW SPI pins are defined the respective pins files,
    * but you can override or define them here.
    */
-  #define TMC_USE_SW_SPI
+  //#define TMC_USE_SW_SPI
   //Use pins normally reserved for servos
-  #define TMC_SW_MOSI       4
-  #define TMC_SW_MISO       5
-  #define TMC_SW_SCK        6
+  //#define TMC_SW_MOSI       4
+  //#define TMC_SW_MISO       5
+  //#define TMC_SW_SCK        6
 
   /**
    * Use Trinamic's ultra quiet stepping mode.
