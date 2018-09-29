@@ -775,10 +775,10 @@
 */
 #define X_PROBE_OFFSET_FROM_EXTRUDER 6  // X offset: -left  +right  [of the nozzle]
 #define Y_PROBE_OFFSET_FROM_EXTRUDER -48  // Y offset: -front +behind [the nozzle]
-#define Z_PROBE_OFFSET_FROM_EXTRUDER -5   // Z offset: -below +above  [the nozzle]
+#define Z_PROBE_OFFSET_FROM_EXTRUDER -1   // Z offset: -below +above  [the nozzle]
 
 // Certain types of probes need to stay away from edges
-#define MIN_PROBE_EDGE 10
+#define MIN_PROBE_EDGE 5
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 8000
@@ -813,11 +813,11 @@
 #define Z_CLEARANCE_MULTI_PROBE     5 // Z Clearance between multiple probes
 //#define Z_AFTER_PROBING           5 // Z position after probing is done
 
-#define Z_PROBE_LOW_POINT          -2 // Farthest distance below the trigger-point to go before stopping
+#define Z_PROBE_LOW_POINT          -1 // Farthest distance below the trigger-point to go before stopping
 
 // For M851 give a range for adjusting the Z probe offset
-#define Z_PROBE_OFFSET_RANGE_MIN -20
-#define Z_PROBE_OFFSET_RANGE_MAX 20
+#define Z_PROBE_OFFSET_RANGE_MIN -2
+#define Z_PROBE_OFFSET_RANGE_MAX 2
 
 // Enable the M48 repeatability test to test probe accuracy
 #define Z_MIN_PROBE_REPEATABILITY_TEST
@@ -876,12 +876,12 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 200
-#define Y_BED_SIZE 300
+#define X_BED_SIZE 290
+#define Y_BED_SIZE 285
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS -10
-#define Y_MIN_POS 0
+#define X_MIN_POS -15
+#define Y_MIN_POS -20
 #define Z_MIN_POS -1
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE //+ 25 //NOTE: This is critical to mantain the spacing of the bed, as the endstop is not the edge of bed
