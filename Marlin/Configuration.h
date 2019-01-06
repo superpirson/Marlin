@@ -362,8 +362,8 @@
 // Comment the following line to disable PID and enable bang-bang.
 #define PIDTEMP
 
-#define BANG_MAX 160    // Limits current to nozzle while in bang-bang mode; 255=full current
-#define PID_MAX 170 // Limits current to nozzle while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current
+#define BANG_MAX 190    // Limits current to nozzle while in bang-bang mode; 255=full current
+#define PID_MAX 200 // Limits current to nozzle while PID is active (see PID_FUNCTIONAL_RANGE below); 255=full current
 #define PID_K1 0.95      // Smoothing factor within any PID loop
 #if ENABLED(PIDTEMP)
   #define PID_AUTOTUNE_MENU // Add PID Autotune to the LCD "Temperature" menu to run M303 and apply the result.
@@ -378,9 +378,9 @@
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
   // Ultimaker
-  #define DEFAULT_Kp 30.20
-  #define DEFAULT_Ki 2.84
-  #define DEFAULT_Kd 80.39
+  #define DEFAULT_Kp 26.85
+  #define DEFAULT_Ki 2.46
+  #define DEFAULT_Kd 73.13
 
   // MakerGear
   //#define DEFAULT_Kp 7.0
@@ -620,7 +620,7 @@
    Override with M201
                                         X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
 */
-#define DEFAULT_MAX_ACCELERATION      { 3000, 2500, 100, 1000 }
+#define DEFAULT_MAX_ACCELERATION      { 3000, 2000, 100, 1000 }
 
 /**
    Default Acceleration (change/s) change = mm/s
@@ -643,7 +643,7 @@
    value set here, it may happen instantaneously.
 */
 #define DEFAULT_XJERK                 10.0
-#define DEFAULT_YJERK                 10.0
+#define DEFAULT_YJERK                 4.0
 #define DEFAULT_ZJERK                  0.3
 #define DEFAULT_EJERK                  5.0
 
