@@ -553,8 +553,8 @@
 //#define X2_DRIVER_TYPE A4988
 //#define Y2_DRIVER_TYPE A4988
 //#define Z2_DRIVER_TYPE A4988
-#define E0_DRIVER_TYPE DRV8825
-//#define E1_DRIVER_TYPE DRV8825
+#define E0_DRIVER_TYPE TMC2130
+//#define E1_DRIVER_TYPE TMC2130
 //#define E2_DRIVER_TYPE A4988
 //#define E3_DRIVER_TYPE A4988
 //#define E4_DRIVER_TYPE A4988
@@ -605,14 +605,14 @@
    Override with M92
                                         X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
 */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 388.8607, 416.0887, 832.1774, 293.3356 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {416.0887, 416.0887, 832.1774, 90.25710 }
 
 /**
    Default Max Feed Rate (mm/s)
    Override with M203
                                         X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
 */
-#define DEFAULT_MAX_FEEDRATE          { 150, 150, 150, 40 }
+#define DEFAULT_MAX_FEEDRATE          { 100, 100, 100, 40 }
 
 /**
    Default Max Acceleration (change/s) change = mm/s
@@ -620,7 +620,7 @@
    Override with M201
                                         X, Y, Z, E0 [, E1[, E2[, E3[, E4]]]]
 */
-#define DEFAULT_MAX_ACCELERATION      { 3000, 2000, 100, 1000 }
+#define DEFAULT_MAX_ACCELERATION      { 1000, 1000, 1000, 1000 }
 
 /**
    Default Acceleration (change/s) change = mm/s
@@ -642,9 +642,9 @@
    When changing speed and direction, if the difference is less than the
    value set here, it may happen instantaneously.
 */
-#define DEFAULT_XJERK                 10.0
+#define DEFAULT_XJERK                 4.0
 #define DEFAULT_YJERK                 4.0
-#define DEFAULT_ZJERK                  0.3
+#define DEFAULT_ZJERK                  4.0
 #define DEFAULT_EJERK                  5.0
 
 /**
@@ -775,7 +775,7 @@
 */
 #define X_PROBE_OFFSET_FROM_EXTRUDER 6  // X offset: -left  +right  [of the nozzle]
 #define Y_PROBE_OFFSET_FROM_EXTRUDER -48  // Y offset: -front +behind [the nozzle]
-#define Z_PROBE_OFFSET_FROM_EXTRUDER 0   // Z offset: -below +above  [the nozzle]
+#define Z_PROBE_OFFSET_FROM_EXTRUDER -1  // Z offset: -below +above  [the nozzle]
 
 // Certain types of probes need to stay away from edges
 #define MIN_PROBE_EDGE 10
@@ -852,7 +852,7 @@
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR true
+#define INVERT_E0_DIR false
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
@@ -876,7 +876,7 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 205
+#define X_BED_SIZE 225
 #define Y_BED_SIZE 265
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
