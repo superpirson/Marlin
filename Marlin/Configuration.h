@@ -778,7 +778,7 @@
 #define Z_PROBE_OFFSET_FROM_EXTRUDER -1  // Z offset: -below +above  [the nozzle]
 
 // Certain types of probes need to stay away from edges
-#define MIN_PROBE_EDGE 10
+#define MIN_PROBE_EDGE 15
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 2400
@@ -846,7 +846,7 @@
 
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
 #define INVERT_X_DIR false
-#define INVERT_Y_DIR true
+#define INVERT_Y_DIR false
 #define INVERT_Z_DIR false
 
 // @section extruder
@@ -867,7 +867,7 @@
 //#define Z_HOMING_HEIGHT 4  // (in mm) Minimal z height before homing (G28) for Z clearance above the bed, clamps, ...
 // Be sure you have this distance over your Z_MAX_POS in case.
 
-// Direction of endstops when homing; 1=MAX, -1=MIN
+// Direction of endstops when homing; 1=MAX, -1=MINRemember
 // :[-1,1]
 #define X_HOME_DIR -1
 #define Y_HOME_DIR -1
@@ -876,11 +876,11 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 225
+#define X_BED_SIZE 210
 #define Y_BED_SIZE 265
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS -15
+#define X_MIN_POS -30
 #define Y_MIN_POS 0
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
@@ -1006,12 +1006,12 @@
   /**
    * Enable the G26 Mesh Validation Pattern tool.
    */
-  //#define G26_MESH_VALIDATION
+  #define G26_MESH_VALIDATION
   #if ENABLED(G26_MESH_VALIDATION)
     #define MESH_TEST_NOZZLE_SIZE    0.4  // (mm) Diameter of primary nozzle.
     #define MESH_TEST_LAYER_HEIGHT   0.2  // (mm) Default layer height for the G26 Mesh Validation Tool.
-    #define MESH_TEST_HOTEND_TEMP  205.0  // (°C) Default nozzle temperature for the G26 Mesh Validation Tool.
-    #define MESH_TEST_BED_TEMP      60.0  // (°C) Default bed temperature for the G26 Mesh Validation Tool.
+    #define MESH_TEST_HOTEND_TEMP  235.0  // (°C) Default nozzle temperature for the G26 Mesh Validation Tool.
+    #define MESH_TEST_BED_TEMP      0.0  // (°C) Default bed temperature for the G26 Mesh Validation Tool.
   #endif
 #endif
 
@@ -1057,7 +1057,7 @@
 #define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
 
 #define MESH_INSET 60             // Mesh inset margin on print area
-#define GRID_MAX_POINTS_X 13      // Don't use more than 15 points per axis, implementation limited.
+#define GRID_MAX_POINTS_X 7      // Don't use more than 15 points per axis, implementation limited.
 #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
 #define UBL_MESH_EDIT_MOVES_Z     // Sophisticated users prefer no movement of nozzle
